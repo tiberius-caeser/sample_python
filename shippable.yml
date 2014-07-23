@@ -7,7 +7,12 @@ python:
   - 3.3
   - 3.4
   - pypy
-  
+
+env:
+  global:
+    - SLACK_ORG=shippable PROJECT=sample-php
+    - secure: lHMVdBq4WhkRv6fznYKLN/uy6FgTsRFkFAlHO2O/3uzuP2F5MTYUEYy6VWBpacXP6NzAGnIx5DeK0B257bBldvxfRyNxiyE1iVIs9blzECU2dtNoX/A2q/gEtYxH4h2e3iV8aRbv7tzJCvlJqTAFVrepXQFgTam81z93RkmWRS3TxrgMuYOMWUzxIsF2D+BVuPoPteoh9rzv6LRoqxmbNfKm/gGE+Nz6FZ/xoRDgTNfplBE+7Fr93CJv3FLjsTTMcJ5xjTjJ+NIIDvj+aIztyUCbmLOedkRZBhWtk6Qm2IuS7cwNf6lUWpKh3gUyoyLB2Op+/1XsE5VUzhSGiObl4A==
+
 install:
   - pip install -r requirements.txt
 
@@ -21,6 +26,17 @@ script:
   - which python && coverage run --branch test.py
   - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
 
+after_failure:
+  - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
+
+after_success:
+  - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
+
 notifications:
-  email:
-   - exampleone@org.com
+     email:
+         recipients:
+             - avniel+buildsample@shippable.com
+         on_success: never
+         on_failure: always
+
+reset_minion: true
