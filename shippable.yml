@@ -10,7 +10,7 @@ python:
 
 env:
   global:
-    - SLACK_ORG=shippable PROJECT=sample-php
+    - SLACK_ORG=shippable PROJECT=sample-python
     - secure: lHMVdBq4WhkRv6fznYKLN/uy6FgTsRFkFAlHO2O/3uzuP2F5MTYUEYy6VWBpacXP6NzAGnIx5DeK0B257bBldvxfRyNxiyE1iVIs9blzECU2dtNoX/A2q/gEtYxH4h2e3iV8aRbv7tzJCvlJqTAFVrepXQFgTam81z93RkmWRS3TxrgMuYOMWUzxIsF2D+BVuPoPteoh9rzv6LRoqxmbNfKm/gGE+Nz6FZ/xoRDgTNfplBE+7Fr93CJv3FLjsTTMcJ5xjTjJ+NIIDvj+aIztyUCbmLOedkRZBhWtk6Qm2IuS7cwNf6lUWpKh3gUyoyLB2Op+/1XsE5VUzhSGiObl4A==
 
 install:
